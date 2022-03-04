@@ -1,0 +1,110 @@
+
+Profilepage - Query for get all countries
+
+select id, txtCountryName from tblcountry;
+-------------------------------------
+
+Profilepage - Query for get all states corresponding to a particular country
+
+select s.id,s.txtStateName,c.txtCountryName 
+from tblstate s join tblcountry c on s.refCountryName=c.id;
+-------------------------------------
+
+Profilepage - Query to insert user into users table
+
+insert into users (refUserType,txtUsername,txtPassword,txtFirstName,txtLastName,refCountry,refState,
+txtAddress,txtStreet,txtCity,txtPinCode,txtPhoneNo,txtWebsite,bIsRegistered,dtCreatedOn,dtUpdatedOn,bDeleteFlag)
+values
+(1,'username7','password7','Joe','Matthew',1,1,'Grace House','Subhash nagar','Kochi','657843','9807654321','www.example.com',
+1,'2021-10-10','2021-10-10',0);
+-------------------------------------
+
+Profilepage - Query for user duplicate validation
+
+select id, txtUsername, txtFirstName, txtLastName from tblusers
+where txtUsername='username2';
+-------------------------------------
+
+Login Screen - Query for user validation
+
+select u.txtUsername, u.txtPassword, u.txtFirstName, u.txtLastName, t.txtUserType 
+from tblusers u join tblusertype t on  u.refUserType=t.id
+where u.txtUsername='username1' and u.txtPassword='password1';
+-------------------------------------
+
+Productlist - Query for product selection
+
+select p.txtProdName, p.txtProdPrice, c.txtCategoryName 
+from tblproduct p join tblproductcategory c on p.refProdCategory=c.id;
+-------------------------------------
+
+Add product - Query for product category selection
+
+select id, txtCategoryName from tblproductcategory;
+-------------------------------------
+
+Add product - Query for product duplicate validation
+
+select p.txtProdName, p.txtProdPrice, c.txtCategoryName 
+from tblproductcategory c join tblproduct p on p.refProdCategory=c.id
+where p.txtProdName='T-shirt';
+-------------------------------------
+
+Add product - Query to insert product
+
+insert into tblproduct (txtProdName,txtProdPrice,refProdCategory)
+values ('iPhone','80000',1);
+-------------------------------------
+
+Product category - Query to insert product category
+
+insert into tblproductcategory (txtCategoryName)
+values ('Toys');
+-------------------------------------
+
+Product category - Query for duplicate validation of product category
+
+select id, txtCategoryName from tblproductcategory
+where txtCategoryName='Decor';
+-------------------------------------
+
+Edit product - Query to select product by ID
+
+select p.id, p.txtProdName, p.txtProdPrice, c.txtCategoryName 
+from tblproduct p join tblproductcategory c on p.refProdCategory=c.id
+where p.id=4;
+-------------------------------------
+
+Edit product - Query to update product
+
+update product set txtProdPrice=50000, txtProdName="Computer"
+where id=4;
+-------------------------------------
+
+Orderlist - Query to select orders from order header table
+
+select h.txtOrderNo, h.txtOrderAmount, u.txtFirstName, u.txtLastName, u.txtPhoneNo 
+from tblorderhdr h join tblusers u on h.refUser=u.id ;
+-------------------------------------
+
+Orderdetails - Query to select order from order header and child tables
+
+select  p.txtProdName, p.txtProdPrice, c.txtQuantity, 
+c.txtTotalAmount, h.txtOrderAmount, h.txtOrderNo
+from tblproduct p join tblorderchild c on c.refProduct=p.id
+join tblorderhdr h on c.refOrderHdr=h.id;
+-------------------------------------
+
+Profile edit - Query to select user by ID
+
+select u.id, u.txtFirstName, u.txtLastName, t.txtUserType 
+from tblusers u join tblusertype t on u.refUserType=t.id
+where u.id=3;
+-------------------------------------
+
+Profile edit - Query to update user
+
+update tblusers set txtFirstName='Tom', txtLastName='GR', txtAddress='Dill Garden',
+txtStreet='Rak square',txtCity='Mavoor' where id=7;
+-------------------------------------
+
