@@ -1,0 +1,103 @@
+Database creation	
+
+create database ecommerceweb;
+-------------------------------
+
+Create table country	
+
+CREATE TABLE tblCountry (
+    id INT NOT NULL AUTO_INCREMENT,
+    txtCountryName VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+--------------------------------
+
+Create table states	
+
+CREATE TABLE tblState (
+    id INT NOT NULL AUTO_INCREMENT,
+    txtStateName VARCHAR(50) NOT NULL,
+    refCountryName INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refCountryName)
+        REFERENCES Country (id)
+);
+---------------------------------
+
+Create table user types
+
+	CREATE TABLE tblUserType (
+    id INT NOT NULL AUTO_INCREMENT,
+    txtUserType VARCHAR(50) NOT NULL,
+    dtCreatedOn DATETIME,
+    dtUpdatedON DATETIME,
+    bDeleteFlag BOOLEAN,
+    PRIMARY KEY (id)
+);
+---------------------------------
+
+Create table users	
+
+CREATE TABLE tblUsers (
+    id INT NOT NULL AUTO_INCREMENT,
+    refUserType INT NOT NULL,
+    txtUsername VARCHAR(50) NOT NULL,
+    txtPassword VARCHAR(50) NOT NULL,
+    txtFirstName VARCHAR(50) NOT NULL,
+    txtLastName VARCHAR(50) NOT NULL,
+    refCountry INT NOT NULL,
+    refState INT NOT NULL,
+    txtAddress VARCHAR(50) NOT NULL,
+    txtStreet VARCHAR(50) NOT NULL,
+    txtCity VARCHAR(50) NOT NULL,
+    txtPinCode VARCHAR(50) NOT NULL,
+    txtPhoneNo VARCHAR(50) NOT NULL,
+    txtWebsite VARCHAR(50) NOT NULL,
+    bIsRegistered BOOLEAN,
+    dtCreatedOn DATETIME,
+    dtUpdatedON DATETIME,
+    bDeleteFlag BOOLEAN,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refUserType)
+        REFERENCES UserType (id),
+    FOREIGN KEY (refCountry)
+        REFERENCES Country (id),
+    FOREIGN KEY (refState)
+        REFERENCES State (id)
+);
+-------------------------------------
+
+Create table order header
+
+	CREATE TABLE tblOrderHdr (
+    id INT NOT NULL AUTO_INCREMENT,
+    refUser INT NOT NULL,
+    txtOrderNo VARCHAR(50) NOT NULL,
+    txtOrderAmount VARCHAR(50) NOT NULL,
+    dtCreatedOn DATETIME,
+    dtUpdatedON DATETIME,
+    bDeleteFlag BOOLEAN,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refUser)
+        REFERENCES Users (id)
+);
+------------------------------------
+
+Create table order child	
+
+CREATE TABLE tblOrderChild (
+    id INT NOT NULL AUTO_INCREMENT,
+    refOrderHdr INT NOT NULL,
+    refProduct INT NOT NULL,
+    txtQuantity VARCHAR(50) NOT NULL,
+    txtTotalAmount VARCHAR(50) NOT NULL,
+    dtCreatedOn DATETIME,
+    dtUpdatedON DATETIME,
+    bDeleteFlag BOOLEAN,
+    PRIMARY KEY (id),
+    FOREIGN KEY (refOrderHdr)
+        REFERENCES OrderHdr (id),
+    FOREIGN KEY (refProduct)
+        REFERENCES Product (id)
+);
+------------------------------------
