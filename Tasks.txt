@@ -1,0 +1,7 @@
+MySql Server Installation
+MySql Workbench Installation
+Database Creation
+Datamodeling
+Table Creation
+CRUD Operations
+JSON for all pages
