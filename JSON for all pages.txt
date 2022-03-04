@@ -22,7 +22,7 @@ Response: {
 
 Task: Profile page - get all states for a particular country
 
-Request:{"task": "getstates","country": {"id": 1}}
+Request:{"task": "getstates","countryid": 1}}
 Response:{
   "status": "success",
   "values": [
@@ -79,7 +79,7 @@ Response:{
 Task: Login screen - for user validation
 
 Request:{
-  "task": ["getuser","getusertype"],
+  "task": "getuser",
   "values": [
     {
       "txtusername": "username1",
@@ -104,7 +104,7 @@ Response:{
 Task: Product list - for product selection
 
 Request:{
-  "task": ["getproduct","getcategory"]
+  "task": "getproduct"
 }
 Response:{
   "status":"success",
@@ -154,7 +154,7 @@ Response:{
 
 Task: Add product - for product duplicate validation
 
-Request:{ "task": ["getproduct","getcategory"],
+Request:{ "task": "getproduct",
   "txtProdname":"T-shirt"
 }
 Response:{
@@ -218,8 +218,8 @@ Response:{
 Task: Edit product - to select product by ID
 
 Request:{
-  "task":["getproduct","getcategory"],
-  "product":{"id":4}
+  "task":"getproduct",
+  "productid":4}
 }
 Response:{
   "status": "success",
@@ -238,7 +238,7 @@ Task: Edit product - to update product
 
 Request:{
   "task":"putproduct",
-  "product":{"id":4},
+  "productid":4},
   "values":[
     {"txtProdprice":"50000"},
     {"txtProdname":"Computer"}]
@@ -252,7 +252,7 @@ Response:{
 Task: Order list - to select order from order header table
 
 Request:{
-  "task":["getorderhdr","getorderchild"]
+  "task":"getorderhdr"
 }
 Response:{
   "status":"success",
@@ -293,7 +293,7 @@ Response:{
 Task: Order details - to select order from header and child tables
 
 Request:{
-  "task":["getorderhdr","getorderchild","getproduct"]
+  "task":"getorderhdr"
 }
 Response:{
   "status":"success",
@@ -339,8 +339,8 @@ Response:{
 Task: Profile edit - to select user by ID
 
 Request:{
-  "task":["getuser","getusertype"],
-  "users":{"id":3}
+  "task":"getuser",
+  "usersid":3}
 }
 Response:{
   "status":"success",
@@ -357,7 +357,7 @@ Task: Profile edit - to update user
 
 Request:{
   "task":"putuser",
-  "users":{"id":7},
+  "usersid":7},
   "values":[
     { "txtFirstname":"Tom",
       "txtLastName":"GR",
