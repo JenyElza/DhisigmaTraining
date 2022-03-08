@@ -1,0 +1,373 @@
+Task: Profile page - get all countries
+
+Request: {"task":"getallcountry"}
+Response: {
+    "status": "success",
+    "values": [
+        {
+            "id": 1,
+            "txtCountryname": "India"
+        },
+        {
+            "id": 2,
+            "txtCountryname": "Srilanka"
+        },
+        {
+            "id": 3,
+            "txtCountryname": "nepal"
+        }
+    ]
+}
+------------------------------------------------------
+
+Task: Profile page - get all states for a particular country
+
+Request:{"task": "getstates","countryid": 1}}
+Response:{
+  "status": "success",
+  "values": [
+    {"id":1,"txtstatename":"Kerala"},
+    {"id":2,"txtstatename":"Karnataka"},
+    {"id":3,"txtstatename":"TN"}
+  ]
+}
+------------------------------------------------------
+
+Task: Profile page - insert users into users table
+
+Request:{
+  "task": "putuser",
+  "values": [
+    {
+      "txtusername": "username1",
+      "txtpassord": "password1",
+      "txtFirstname": "Alex",
+      "txtLastname": "Thomas",
+      "txtPhoneno": "989898989898"
+    }
+  ]
+}
+Response:{
+  "status": "success",
+  "values": [
+    {
+      "id": 1
+    }
+  ]
+}
+-----------------------------------------------------
+
+Task: Profile page - for user duplicate validation
+
+Request:{
+  "task": "getuser",
+  "txtusername": "username1"
+}
+Response:{
+  "status": "success",
+  "values": [
+    {
+      "id": 2,
+      "txtusername": "username2",
+      "txtFirstname": "Roy",
+      "txtLastname": "KS"
+    }
+  ]
+}
+----------------------------------------------------
+
+Task: Login screen - for user validation
+
+Request:{
+  "task": "getuser",
+  "values": [
+    {
+      "txtusername": "username1",
+      "txtpassword": "password1"
+    }
+  ]
+}
+Response:{
+  "status": "success",
+  "values": [
+    {
+      "txtusername": "username1",
+      "txtpassword": "password1",
+      "txtFirstname": "John",
+      "txtLastname": "Thomson",
+      "txtUsertype": "Customer"
+    }
+  ]
+}
+----------------------------------------------------
+
+Task: Product list - for product selection
+
+Request:{
+  "task": "getproduct"
+}
+Response:{
+  "status":"success",
+  "values":[
+    {
+      "txtProdname":"Shampoo",
+      "txtProdprice":"650",
+      "txtCategoryname":"Cosmetics"
+    },
+    {
+      "txtProdname":"Bouquet",
+      "txtProdprice":"455",
+      "txtCategoryname":"Decor"
+    },
+    {
+      "txtProdname":"Laptop",
+      "txtProdprice":"45000",
+      "txtCategoryname":"Electronics"
+    },
+    {
+      "txtProdname":"T-shirt",
+      "txtProdprice":"500",
+      "txtCategoryname":"Fashion"
+    },
+    {
+      "txtProdname":"Cookies",
+      "txtProdprice":"120",
+      "txtCategoryname":"Grocery"
+    }
+    ]
+}
+----------------------------------------------------
+
+Task: Add product - to select product category
+
+Request:{"task":"getcategory"}
+Response:{
+  "status":"success",
+  "values":[
+    {"id":1,"txtCategoryname":"Electronics"},
+    {"id":2,"txtCategoryname":"Fashion"},
+    {"id":3,"txtCategoryname":"Cosmetics"},
+    {"id":4,"txtCategoryname":"Decor"},
+    {"id":5,"txtCategoryname":"Grocery"}]
+}
+----------------------------------------------------
+
+Task: Add product - for product duplicate validation
+
+Request:{ "task": "getproduct",
+  "txtProdname":"T-shirt"
+}
+Response:{
+  "status": "success",
+  "values": [
+    {
+      "txtProdname": "T-shirt",
+      "txtProdprice": "500",
+      "txtCategoryName": "Fashion"
+    }
+  ]
+}
+----------------------------------------------------
+
+Task: Add product - to insert product into product table
+
+Request:{
+  "task": "putproduct",
+  "values": [
+    {
+      "txtProdname": "iPhone",
+      "txtProdprice": "80000",
+      "refProdcategory": "1"
+    }
+  ]
+}
+Response:{
+  "status": "success",
+  "values": [
+    {"id": 6} ]
+}
+----------------------------------------------------
+
+Task: Product category - to insert category into product category table
+
+Request:{
+  "task": "putcategory",
+  "txtCategoryName": "Toys"
+}
+Response:{
+  "status":"success",
+  "values":[
+    {"id":6}]
+}
+----------------------------------------------------
+
+Task: Product category - for product category duplicate validation
+
+Request:{
+  "task":"getcategory",
+  "txtCategoryname":"Decor"
+}
+Response:{
+  "status":"success",
+  "values":[
+    {"id":4,
+     "txtCategoryname":"Decor"}]
+}
+----------------------------------------------------
+
+Task: Edit product - to select product by ID
+
+Request:{
+  "task":"getproduct",
+  "productid":4}
+}
+Response:{
+  "status": "success",
+  "values": [
+    {
+      "id":4,
+      "txtProdname": "Computer",
+      "txtProdprice": "50000",
+      "txtCategoryName": "Electronics"
+    }
+  ]
+}
+---------------------------------------------------
+
+Task: Edit product - to update product
+
+Request:{
+  "task":"putproduct",
+  "productid":4},
+  "values":[
+    {"txtProdprice":"50000"},
+    {"txtProdname":"Computer"}]
+}
+Response:{
+  "status":"success",
+  "values":[{"id":4}]
+}
+--------------------------------------------------
+
+Task: Order list - to select order from order header table
+
+Request:{
+  "task":"getorderhdr"
+}
+Response:{
+  "status":"success",
+  "values":[
+    {"txtOrderno":"101",
+      "txtOrderamount":"3000",
+      "txtFirstname":"John",
+      "txtLastname":"Thomson",
+      "txtPhoneno":"9999999999"
+    },
+     {"txtOrderno":"102",
+      "txtOrderamount":"4500",
+      "txtFirstname":"Roy",
+      "txtLastname":"KS",
+      "txtPhoneno":"9876543201"
+    },
+     {"txtOrderno":"103",
+      "txtOrderamount":"45000",
+      "txtFirstname":"Mia",
+      "txtLastname":"Smith",
+      "txtPhoneno":"6789012345"
+    },
+     {"txtOrderno":"104",
+      "txtOrderamount":"2400",
+      "txtFirstname":"Ben",
+      "txtLastname":"Carson",
+      "txtPhoneno":"9786345321"
+    },
+     {"txtOrderno":"105",
+      "txtOrderamount":"6740",
+      "txtFirstname":"Hiro",
+      "txtLastname":"Hamada",
+      "txtPhoneno":"9034567812"
+    }]
+}
+-----------------------------------------------------
+
+Task: Order details - to select order from header and child tables
+
+Request:{
+  "task":"getorderhdr"
+}
+Response:{
+  "status":"success",
+  "values":[
+    {"txtProdname":"T-shirt",
+      "txtProdprice":"500",
+      "txtQuantity":"4",
+      "txtTotalamount":"3200",
+      "txtOrderamount":"3000",
+      "txtOrderno":"101"
+    },
+     {"txtProdname":"Shampoo",
+      "txtProdprice":"650",
+      "txtQuantity":"7",
+      "txtTotalamount":"5000",
+      "txtOrderamount":"4500",
+      "txtOrderno":"102"
+    },
+     {"txtProdname":"Computer",
+      "txtProdprice":"50000",
+      "txtQuantity":"1",
+      "txtTotalamount":"50000",
+      "txtOrderamount":"45000",
+      "txtOrderno":"103"
+    },
+     {"txtProdname":"Bouquet",
+      "txtProdprice":"455",
+      "txtQuantity":"4",
+      "txtTotalamount":"2500",
+      "txtOrderamount":"2400",
+      "txtOrderno":"104"
+    },
+     {"txtProdname":"Cookies",
+      "txtProdprice":"120",
+      "txtQuantity":"2",
+      "txtTotalamount":"2500",
+      "txtOrderamount":"6740",
+      "txtOrderno":"105"
+    }]
+}
+------------------------------------------------------
+
+Task: Profile edit - to select user by ID
+
+Request:{
+  "task":"getuser",
+  "usersid":3}
+}
+Response:{
+  "status":"success",
+  "values":[
+    {"id":3,
+      "txtFirstname":"Mia",
+      "txtLastName":"Smith",
+      "txtUsertype":"Customer"
+    }]
+}
+------------------------------------------------------
+
+Task: Profile edit - to update user
+
+Request:{
+  "task":"putuser",
+  "usersid":7},
+  "values":[
+    { "txtFirstname":"Tom",
+      "txtLastName":"GR",
+      "txtAddress":"Dill Garden",
+      "txtStreet":"Rak Square",
+      "txtcity":"Mavoor"
+    }]
+}
+Response:{
+  "status":"success",
+  "values":[{"id":7}]
+}
+------------------------------------------------------
