@@ -1,3 +1,4 @@
+// Created by Jeny Biju
 
 // Load the HTTP module. Created on 7th March 2022
 const http = require('http');
@@ -30,7 +31,7 @@ con.connect(function (err) {
 
 app.use(bodyParser.json())
 
-// To get details of all countries from the database. Created by Jeny Biju on 8th March 2022
+// To get details of all countries from the database. Created 8th March 2022
 app.get('/getcountries', (req, res) => {
     con.query("select id, txtCountryName from country", function (err, result, fields) {
         res.send(view = {
